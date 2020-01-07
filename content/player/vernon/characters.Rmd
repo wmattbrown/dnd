@@ -1,0 +1,113 @@
+---
+title: "Known Characters"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(kableExtra)
+```
+
+```{r functions}
+set_player <- function(player_name,
+                       character_name,
+                       race,
+                       class,
+                       notes){
+  list("Player" = player_name,
+       "Name" = character_name,
+       "Race" = race,
+       "Class" = class,
+       "Notes" = notes)
+}
+
+set_npc <- function(name,
+                    notes){
+  list("Name" = name,
+       "Notes" = notes)
+}
+```
+
+## PCs
+
+This is the information that Vernon is aware of <span style="font-size:0.5em;">*(Except Val)*</span>
+```{r player_stats}
+val <- set_player(player_name = "Val",
+                  character_name = "Dungeon Master",
+                  race = "",
+                  class = "",
+                  notes = "Has final say on everything.  
+a.k.a. 'God'") 
+
+willy <- set_player(player_name = "Willy",
+                    character_name = "Vernon Vickies",
+                    race = "Verdan",
+                    class = "Warlock",
+                    notes = "Hates corrupt nobles.  
+Likes helping people in need.   
+Has a pact with a demon that demands killing in exchange for not devouring his soul. The demon also bestows magical powers.  
+Can potentially change gender when attributes change.")
+
+alex <- set_player(player_name = "Alex",
+                   character_name = "Gilberto",
+                   race = "human?",
+                   class = "Rogue",
+                   notes = "Seems to be the face of the group.")
+
+fetwi <- set_player(player_name = "Fetwi",
+                    character_name = "Zakham Ruhle",
+                    race = "Human",
+                    class = "Bard",
+                    notes = "")
+
+phil <- set_player(player_name = "Phil",
+                   character_name = "Dezo",
+                   race = "?",
+                   class = "druid?",
+                   notes = "")
+
+mohamed <- set_player(player_name = "Mohamed",
+                      character_name = "Verril",
+                      race = "?",
+                      class = "fighter?barbarian?",
+                      notes = "")
+
+player_stats <- Reduce(dplyr::bind_rows, list(val, willy, alex, fetwi, phil, mohamed))
+
+knitr::kable(player_stats) %>% 
+  kable_styling("striped", full_width = FALSE) %>% 
+  column_spec(5, width_min = "20em") %>% 
+  scroll_box(width = "100%")
+```
+
+
+## NPCs
+```{r npc}
+Reduce(dplyr::bind_rows, 
+       list(set_npc(name = "Vawen Lowwe'elai",
+                    notes = "In Vernon's original party. Elf woman. Broke her leg in the carriage carnage. Needs help moving, being carried by Prince Darrendil."),
+            set_npc("Dorn Ironskull",
+                    "In Vernon's original party. Dwarf fighter. Lost conciousness in the carriage carnage from a head wound. Doesn't talk much. Something happeend between him and Gilberto in the fog, but he doesn't seem to be holding a grudge."),
+            set_npc("Tav Torin",
+                    "In Vernon's original party. Half elf mage. Decapitated during the carriage carnage."),
+            set_npc("Prince Darrendil",
+                    "Huge and strong. Background and race unknown. Seems intelligent and polite. Is carrying Vawen because of her leg, without complaint. Seems like a good fellow."),
+            set_npc("Neznar",
+                    "Drow male who was also a prisoner. The party helped him escape so he is helping them get where they need to go. Doesn't say a lot. Wants us to get rid of Vawen because \"she's a liability\". He has a mark on the side of his head that looks like a series of moles or some kind of infection that was left untreated, I'm not sure. He also mutters to himself a lot. I can't tell if he's a it unhinged or just odd. I believe him when he sas he will take us where we're going, Neverlight Grove."),
+            set_npc("Stoop",
+                    "A miconid (looks like a muchroom) that can communicate telepathically with the party. It seems very friendly and we are trying to bring it home to Neverlight Grove, in the underdark. I don't know where it came from but it sounds like it was 'born' recently in the drow camp."),
+            set_npc("gnome",
+                    "A gnome is in our party. I keep forgetting he's there and I can't remember his name. He doesn't talk much. He was a prisoner with the others and escaped with them. I should find out more about him."))) %>% 
+  knitr::kable() %>% 
+  kable_styling("striped", full_width = FALSE)# %>%
+  # scroll_box(width = "100%")
+
+
+# npc_list <- Reduce(dplyr::bind_rows, list())
+
+# knitr::kable(npc_list) %>% 
+# kable_styling("striped", full_width = FALSE) %>% 
+# column_spec(7, width_min = "30em") %>% 
+# scroll_box(width = "100%")
+```

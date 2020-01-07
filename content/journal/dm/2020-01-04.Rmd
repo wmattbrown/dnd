@@ -1,0 +1,30 @@
+---
+title: "Session 1"
+author: "Val"
+date: "2020-01-04"
+tags: ["DM", "Journal"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Title for this session
+
+Write using markdown. 
+
+two \* or _ toggles **bold**  
+
+one \* or _ toggles *italics*
+
+use two spaces as the end of a line to return. or hit enter twice
+
+use \# to make sections. The highest in this journal (the title above) is \#\#. Use more \# to get a lower level. So if you have a subsection of your journal entry, start it off with 
+
+\#\#\# \<your section title\>
+
+on a line by itself and continue writing below
+
+you can add tags to you to your journal entry if you want. it isn't needed though.
